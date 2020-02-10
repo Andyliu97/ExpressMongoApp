@@ -1,0 +1,5 @@
+NPM Mongo: https://www.npmjs.com/package/mongodb
+NPM Express: https://expressjs.com/en/starter/installing.html 
+https://mongodb.github.io/node-mongodb-native/api-generated/collection.html
+
+Connection Error with Mongo: https://jimcute.wordpress.com/2015/06/02/unable-to-connect-to-server-127-0-0-127017-no-connection-could-be-made-because-the-target-machine-actively-refused-it-127-0-0-127017/
