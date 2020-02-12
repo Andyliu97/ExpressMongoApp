@@ -1,6 +1,5 @@
 {
   "name": "ejs",
-  "main": "Server.js",
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "ejs": "^1.0.0",
