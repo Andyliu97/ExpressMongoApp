@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://unpkg.com/ag-grid-enterprise/dist/ag-grid-enterprise.min.noStyle.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-grid.css">
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-balham.css">
+</head>
+<body>
+    <h1>Express Mongo App</h1>
+
+    <div id="myGrid" style="height: 600px;width:800px;" class="ag-theme-balham"></div>
+
+    <button onclick="getSelectedRows()">Get Selected Rows</button>
+    <button onclick="getSelectedRows()">Edit Value</button>
+
+    <div id="myButton" style="height: 600px;width:600px;" class="ag-theme-balham"></div>
+
+    <script type="text/javascript" charset="utf-8">
+
+        //Stringify: Converts JavaScript object into a JSON String
+        var myObj = <%-JSON.stringify(myArray)%>;
+
+        //Local array to store row-data information
+        var data =[];
+
+        //Local array for each attribute from JSON object
+        var myId = [];
+        var myName =[];
+        var myPrice =[];
+        var myCategory =[];
+        var myAuthor =[];
+
+
+        //Parse through JSON String by column name
+        for (var i =0; i <myObj.length;i++){
+            myId.push(myObj[i]._id);
+            myName.push(myObj[i].Name);
+            myPrice.push(myObj[i].Price);
+            myCategory.push(myObj[i].Category);
+            myAuthor.push(myObj[i].Author);
+        }
+
+        //Stores each JSON object attribute instance into row Data
+        for (var i=0; i <myObj.length; i++){
+            data.push({id: myId[i], name: myName[i], price: myPrice[i], category: myCategory[i], author: myAuthor[i]});
+        }
+        
+        //console.log(data)
+
+    // specify the columns
+      var columnDefs = [
+            { headerName: "Project ID", field: "id", sortable: true, filter: true },
+            { headerName: "Name", field: "name", sortable: true, filter: true },
+            { headerName: "Price", field: "price", sortable: true, filter: true },
+            { headerName: "Category", field: "category", sortable: true, filter: true },
+            { headerName: "Author", field: "author", sortable: true, filter: true }
+        ];
+
+    // specify the data
+        var rowData = data;
+    
+    // let the grid know which columns and what data to use
+        var gridOptions = {
+          columnDefs: columnDefs,
+          rowData: rowData
+        };
+
+      // lookup the container we want the Grid to use
+      var eGridDiv = document.querySelector('#myGrid');
+
+      // create the grid passing in the div to use together with the columns & data we want to use
+      new agGrid.Grid(eGridDiv, gridOptions);
+
+  </script>
+</body>
+</html>
